@@ -1,0 +1,36 @@
+name: 'Trello Link GitHub Action'
+description: 'automatically link commits, branches, and pull requests to Trello cards'
+branding:
+  icon: 'link'
+  color: 'purple'
+inputs:
+  board-identifier:
+    description: |
+        Allowed to be one of the following:
+        1. the board name
+        2. the board shortLink (can be found in the URL)
+        3. the boardId (can be found via the Trello REST API)
+        This field is required if allow-missing-board is false.
+    required: false
+  allow-missing-board:
+    description: |
+      If this is true and the board-identifier is missing or cannot be resolved,
+      the Action will search across all of your boards.
+    required: false
+    default: 'false'
+  marker:
+    description: |
+      When preceding a number in a commit message or PR body or title,
+      indicates that the number is a Trello shortId.
+      May be either:
+      1. an alpha string, eg TRELLO
+      2. an alpha string followed by a dash, eg TRELLO-
+      3. one of the characters ! @ # $ % ^ & * + = (note: must be exactly 1 char long)
+    required: false
+    default: 'TRELLO-'
+  trello-token:
+    description: 'Secret token used to contact Trello'
+    required: true
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
