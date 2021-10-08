@@ -1,5 +1,7 @@
 # Trello Link GitHub Action
 
+![Latest Release](https://img.shields.io/github/v/release/kagof/trello-link-github-action)
+
 View on the [GitHub Marketplace](https://github.com/marketplace/actions/trello-link-github-action)
 
 Trello has a [Power-Up to link GitHub commits, pull requests, branches, or issues to a card](https://trello.com/power-ups/55a5d916446f517774210004/github), however, this must be done manually. This action allows you to link a commit, pull request, or issue to a Trello card automatically by using Trello's short Id in a commit message, pull request title or body, or issue title or body.
