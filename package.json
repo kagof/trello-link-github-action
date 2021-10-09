@@ -1,6 +1,6 @@
 {
   "name": "trello-link-github-action",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "GitHub action to link commits, pull requests, and issues to Trello cards",
   "main": "src/index.js",
   "scripts": {
