@@ -4,7 +4,9 @@
 
 View on the [GitHub Marketplace](https://github.com/marketplace/actions/trello-link-github-action)
 
-Trello has a [Power-Up to link GitHub commits, pull requests, branches, or issues to a card](https://trello.com/power-ups/55a5d916446f517774210004/github), however, this must be done manually. This action allows you to link a commit, pull request, or issue to a Trello card automatically by using Trello's short Id in a commit message, pull request title or body, or issue title or body.
+Trello has a [Power-Up to link GitHub commits, pull requests, branches, or issues to a card](https://trello.com/power-ups/55a5d916446f517774210004/github), however, this must be done manually. This action allows you to link a commit, pull request, or issue to a Trello card automatically by using Trello card identifiers in a commit message, pull request title or body, or issue title or body.
+
+The Trello card `id`, `shortLink`, or `idShort` may be used in the tag. The `idShort` (ie, card number) is the easiest to use (in my opinion), assuming you use the Card Number plugin as described [here](#trello-board).
 
 ## Usage
 
@@ -14,18 +16,14 @@ In your repository, create an action workflow with the following step:
 
 ```yaml
 - name: Link to Trello
-  uses: kagof/trello-link-github-action@v1.0.0
+  uses: kagof/trello-link-github-action@v1.1.0
   with:
-    # Optional if allow-missing-board is true. Required otherwise.
+    # Required.
     # Allowed to be one of the following:
     # 1. the board name
     # 2. the board shortLink (can be found in the URL)
     # 3. the boardId (can be found via the Trello REST API)
     board-identifier: "${{ secrets.BOARD_IDENTIFIER }}"
-    # Optional (default false)
-    # If this is true and the board-identifier is missing or cannot be resolved,
-    # the Action will search across all of your boards.
-    allow-missing-board: 'false'
     # Required
     # Secret token used to contact Trello
     trello-token: "${{ secrets.TRELLO_TOKEN }}"
@@ -73,7 +71,9 @@ For Example, if your marker is `TRELLO-`:
 #### Valid
 
 * `TRELLO-19 fixes that problem`
-* `TRELLO-19: fixes that problem`
+* `TRELLO-19: fixes that pidroblem`
+* `TRELLO-1234567890abcdefg1234567 using the card ID`
+* `TRELLO-AbcDeFga using the card shortLink`
 * `fixes TRELLO-19 and TRELLO-18`
 * `fix/TRELLO-19-fix-the-stuff`
 * `TRELLO-19,TRELLO-18`
@@ -87,4 +87,3 @@ For Example, if your marker is `TRELLO-`:
 
 * If this action runs on a pull request, the commits in the PR are not considered during the run. This can be worked around by running the action on commits as well.
 * Branch are not (yet?) considered
-* If you want to use the long ID of a card (or anything other than the shortId), that is not (yet?) supported

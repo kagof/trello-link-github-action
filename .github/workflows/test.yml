@@ -1,0 +1,23 @@
+name: Trello
+
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  issues:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+      - name: Link to Trello
+        id: trello-link
+        uses: ./
+        with:
+          board-identifier: "${{ secrets.BOARD_IDENTIFIER }}"
+          trello-token: "${{ secrets.TRELLO_TOKEN }}"
+          marker: 'TRELLO-'
