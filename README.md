@@ -28,8 +28,8 @@ In your repository, create an action workflow with the following step:
     # Secret token used to contact Trello
     trello-token: "${{ secrets.TRELLO_TOKEN }}"
     # Optional (default 'TRELLO-')
-    # When preceding a number in a commit message or PR body or title,
-    # indicates that the number is a Trello shortId.
+    # When preceding a string in a commit message or PR body or title,
+    # indicates that the string is a Trello shortId.
     # May be either:
     # 1. an alpha string, eg TRELLO
     # 2. an alpha string followed by a dash, eg TRELLO-
@@ -62,16 +62,16 @@ Note the `#19` - this is the Trello shortId for this card.
 
 ### Commits, Pull Requests, and Issues
 
-When opening commits, put your marker and ticket short number anywhere in the commit message. When opening pull requests or issues, place it anywhere in your title or body.
+When opening commits, put your tag anywhere in the commit message. When opening pull requests or issues, place it anywhere in your title or body.
 
-As long as there is a word break, your tag will be picked up. If your marker is a special character, the word break is not necessary. Multiple tags are allowed.
+As long as there is a word break, your tag will be picked up. If your marker is a special character, the word break is not necessary. Multiple tags are allowed. Tags can use the card `id`, `idShort`, or `shortLink`.
 
 For Example, if your marker is `TRELLO-`:
 
 #### Valid
 
 * `TRELLO-19 fixes that problem`
-* `TRELLO-19: fixes that pidroblem`
+* `TRELLO-19: fixes that problem`
 * `TRELLO-1234567890abcdefg1234567 using the card ID`
 * `TRELLO-AbcDeFga using the card shortLink`
 * `fixes TRELLO-19 and TRELLO-18`
