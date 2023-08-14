@@ -26,5 +26,5 @@ inputs:
     description: 'Secret token used to contact Trello'
     required: true
 runs:
-  using: 'node12'
+  using: 'node16'
   main: 'dist/index.js'
